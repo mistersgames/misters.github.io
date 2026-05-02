@@ -1,13 +1,14 @@
+# Задаем базовый образ с PHP 8.2 и Apache
 FROM php:8.2-apache
 
-# Устанавливаем SQLite3 расширение
+# Устанавливаем необходимые зависимости и модуль SQLite3
 RUN apt-get update && apt-get install -y sqlite3 libsqlite3-dev && docker-php-ext-install sqlite3
 
-# Копируем весь код бота
+# Копируем все файлы с кодом вашего бота в рабочую папку веб-сервера
 COPY . /var/www/html/
 
-# Права доступа
+# (Опционально) Настраиваем права доступа
 RUN chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html
 
-# Включаем модуль rewrite (не обязательно)
-RUN a2enmod rewrite
+# Сообщаем Docker, что контейнер слушает 80-й порт
+EXPOSE 80
