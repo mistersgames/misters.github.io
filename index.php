@@ -12,6 +12,7 @@ register_shutdown_function(function() {
 });
 
 $rawInput = file_get_contents('php://input');
+
 http_response_code(200);
 header('Content-Type: application/json');
 header('Connection: close');
@@ -19,10 +20,9 @@ ob_start();
 echo '{"ok":true}';
 ob_end_flush();
 flush();
+
 if (function_exists('fastcgi_finish_request')) {
     fastcgi_finish_request();
-}
-
 /**
  * Manager Bot — бот для управления чатом
  * Работает в группе/супергруппе. Команды используют администраторы прямо в чате.
