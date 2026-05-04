@@ -1,13 +1,22 @@
-FROM php:8.2-cli
+FROM php:8.2-apache
 
-# Устанавливаем SQLite3
-RUN apt-get update && apt-get install -y sqlite3 libsqlite3-dev && docker-php-ext-install sqlite3
+# Установка системных зависимостей и SQLite3 для PHP
+RUN apt-get update && apt-get install -y \
+    sqlite3 \
+    libsqlite3-dev \
+    && docker-php-ext-install sqlite3 \
+    && docker-php-ext-enable sqlite3 \
+    && a2enmod rewrite
 
-# Рабочая папка
-WORKDIR /app
+# Копируем весь код бота
+COPY . /var/www/html/
 
-# Копируем все файлы бота
-COPY . /app/
+# Права доступа (apache должен иметь возможность писать в БД и логи)
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html \
+    && chmod 777 /var/www/html/data 2>/dev/null || true
 
-# Запускаем встроенный PHP-сервер на порту 3000 (bothost ждёт этот порт)
-CMD ["php", "-S", "0.0.0.0:3000", "-t", "/app"]
+# Переменная окружения (если нужно, замените на ваш токен, но лучше через bothost)
+# ENV BOT_TOKEN=your_token_here
+
+EXPOSE 80
