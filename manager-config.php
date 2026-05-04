@@ -17,7 +17,7 @@ define('BOT_NAME', 'MISTERS MANAGER');
 // 🔑 ТОКЕН БОТА
 // Получить у @BotFather командой /newbot
 // ─────────────────────────────────────────────
-define('BOT_TOKEN', '8773904824:AAHEqsomc8f0vClFzgEZqfDK-o8dgRcCfmc');
+define('BOT_TOKEN', '8773904824:AAEGRkDAayHsgmzGW63LNlq4SZ6b0LtwUrA');
 
 // ─────────────────────────────────────────────
 // 👑 TELEGRAM ID ВЛАДЕЛЬЦА БОТА
