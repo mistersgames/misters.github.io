@@ -1,6 +1,6 @@
-FROM php:8.2-apache
+FROM php:8.2-apache-bullseye
 
-RUN apt-get update && apt-get install -y php8.2-sqlite3 && apt-get clean
+RUN apt-get update && apt-get install -y sqlite3 libsqlite3-dev && docker-php-ext-install sqlite3
 
 COPY . /var/www/html/
 
