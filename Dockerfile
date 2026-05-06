@@ -1,6 +1,6 @@
 FROM php:8.2-apache
 
-# Устанавливаем системные зависимости и PECL-расширение sqlite3
+# Устанавливаем системные пакеты и расширение sqlite3 через PECL
 RUN apt-get update && apt-get install -y sqlite3 libsqlite3-dev \
     && pecl install sqlite3 \
     && docker-php-ext-enable sqlite3 \
