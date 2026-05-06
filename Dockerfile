@@ -1,6 +1,10 @@
 FROM php:8.2-apache-bullseye
 
-RUN apt-get update && apt-get install -y sqlite3 libsqlite3-dev && docker-php-ext-install sqlite3
+RUN apt-get update && apt-get install -y sqlite3 libsqlite3-dev && \
+    docker-php-ext-install pdo_sqlite
+
+# Включаем встроенное расширение sqlite3
+RUN docker-php-ext-enable sqlite3
 
 COPY . /var/www/html/
 
