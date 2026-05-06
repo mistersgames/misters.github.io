@@ -1,6 +1,7 @@
 <?php
 // ─── ВРЕМЕННО: логируем все PHP-ошибки в файл ───────────────────────────────
-ini_set('display_errors', 0);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 ini_set('log_errors', 1);
 ini_set('error_log', __DIR__ . '/bot_error.log');
 error_reporting(E_ALL);
